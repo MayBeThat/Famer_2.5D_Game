@@ -10,8 +10,7 @@ public class Player extends Entity {
     public Player(InputHandler input) {
         this.input = input;
 
-        x = 100;
-        y = 100;
+        super(100,100);
         width = 32;
         height = 48;
         speed = 4;

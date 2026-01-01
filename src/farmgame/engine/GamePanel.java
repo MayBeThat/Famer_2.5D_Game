@@ -2,9 +2,16 @@ package farmgame.engine;
 
 import javax.swing.JPanel;
 import java.awt.*;
+import java.util.ArrayList;
 
+import farmgame.crop.Carrot;
+import farmgame.crop.Sunflower;
+import farmgame.crop.Tomato;
 import farmgame.entity.Player;
+import farmgame.environment.*;
 import farmgame.input.InputHandler;
+import farmgame.crop.Crop;
+
 
 public class GamePanel extends JPanel {
 
@@ -16,9 +23,13 @@ public class GamePanel extends JPanel {
     public static final int SCREEN_WIDTH = TILE_SIZE * SCREEN_COL;
     public static final int SCREEN_HEIGHT = TILE_SIZE * SCREEN_ROW;
 
+
     private GameLoop gameLoop;
     private Player player;
     private InputHandler input;
+    private ArrayList<Crop> crops;
+    private ArrayList<EnvironmentObject> objects;
+    private Chest chest;
 
     public GamePanel() {
 
@@ -37,6 +48,13 @@ public class GamePanel extends JPanel {
         // Player
         player = new Player(input);
 
+        //crop
+        crops = new ArrayList<>();
+        crops.add(new Carrot(233,323));
+
+        //enviroment
+        objects = new ArrayList<>();
+
         // Game loop
         gameLoop = new GameLoop(this);
     }
@@ -47,7 +65,10 @@ public class GamePanel extends JPanel {
 
     // Logic game
     public void update() {
-        player.update();
+     player.update();
+//     if(input.interactPressed && chest.isNearPlayer(player)) {
+//            chest.interact(player);
+//        }
     }
 
     // Vẽ game
@@ -56,7 +77,15 @@ public class GamePanel extends JPanel {
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D) g;
+
         player.render(g2);
+//        for (Crop crop : crops) {
+//            crop.render(g2);
+//        }
+//        for (EnvironmentObject object : objects) {
+//            object.render(g2);
+//        }
+//        chest.render(g2);
         g2.dispose();
     }
 }
