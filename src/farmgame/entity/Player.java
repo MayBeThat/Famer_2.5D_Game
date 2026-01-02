@@ -13,11 +13,10 @@ public class Player extends Entity {
     private List<Item> inventory;
 
     public Player(InputHandler input) {
+        super(100,100);
         this.input = input;
         this.inventory = new ArrayList<>();
 
-        x = 100;
-        y = 100;
         width = 32;
         height = 48;
         speed = 4;
