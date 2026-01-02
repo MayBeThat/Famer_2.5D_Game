@@ -1,14 +1,20 @@
 package farmgame.entity;
 
 import farmgame.input.InputHandler;
+import farmgame.item.Item;
+
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Player extends Entity {
 
     private InputHandler input;
+    private List<Item> inventory;
 
     public Player(InputHandler input) {
         this.input = input;
+        this.inventory = new ArrayList<>();
 
         x = 100;
         y = 100;
@@ -30,4 +36,15 @@ public class Player extends Entity {
         g2.setColor(Color.BLUE);
         g2.fillRect(x, y, width, height);
     }
+
+    public void addItem(Item item) {
+        if (item != null) {
+            inventory.add(item);
+        }
+    }
+
+    public List<Item> getInventory() {
+        return inventory;
+    }
 }
+
